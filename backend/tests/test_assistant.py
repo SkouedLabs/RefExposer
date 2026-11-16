@@ -617,3 +617,48 @@ def test_a_step_keeps_what_the_tool_answered(env, llm):
     assert step["result"] and step["ms"] is not None and step["ms"] >= 0
     stored = env.get(f"/api/assistant/conversations/{conv}").json()["messages"][-1]
     assert stored["steps"][0]["result"] == step["result"]
+
+
+def test_turning_the_assistant_on_survives_a_read_started_before(env, llm, monkeypatch):
+    """A background read that began before the change must not put its stale value back in the cache.
+
+    `appsettings.load()` reads the database outside its lock, and the assistant section runs a second query
+    for the active profile, so a slow read can finish after a save. Publishing what it read would overwrite
+    the new settings for the rest of the life of the process: the assistant would answer 403 to everyone
+    while the interface still shows it as enabled, until a restart. A watchdog started by the end of an
+    update (`watchdog.on_sync`) makes exactly that read, in the worker thread of the ingestion.
+    """
+    import threading
+
+    from app import appsettings, llmprofiles
+    from app.db import session_factory
+
+    appsettings.clear_cache()
+    reading, saved, stale = threading.Event(), threading.Event(), []
+    real_overlay = llmprofiles.overlay
+
+    def slow_overlay(db, settings):
+        value = real_overlay(db, settings)
+        reading.set()
+        assert saved.wait(10)  # the save lands while this read is still on its way
+        return value
+
+    def read():
+        with session_factory()() as db:
+            stale.append(appsettings.load(db, "assistant"))
+
+    monkeypatch.setattr(llmprofiles, "overlay", slow_overlay)
+    reader = threading.Thread(target=read)
+    reader.start()
+    assert reading.wait(10)
+
+    monkeypatch.setattr(llmprofiles, "overlay", real_overlay)
+    configure(env)  # the administrator turns the assistant on, in the meantime
+    saved.set()
+    reader.join(10)
+    assert not reader.is_alive()
+    assert env.get("/api/assistant").json()["available"] is True
+    llm("Hello.")
+    _, events = ask(env, "hello", agent=False)  # a 403 here is the cache having gone backwards
+    assert final(events)["content"] == "Hello."
+    assert stale and stale[0].enabled is True  # handed the newer value, instead of caching its own

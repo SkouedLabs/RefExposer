@@ -834,6 +834,11 @@ SECRET_FIELDS: dict[str, tuple[str, ...]] = {"proxy": ("password",), "ldap": ("b
 
 _cache: dict[str, BaseModel] = {}
 _lock = threading.Lock()
+# Bumped by every save() and every clear_cache(). A load() reads the database outside the lock (the
+# assistant section even runs a second query, for the active profile), so the value it computed may
+# already be stale by the time it gets the lock back: publishing it would overwrite the newer one for
+# the rest of the life of the process — the setting would look saved and keep having no effect.
+_generation = 0
 
 
 def _read(db: Session, key: str) -> BaseModel:
@@ -870,6 +875,7 @@ def load(db: Session, key: str) -> BaseModel:
     with _lock:
         if key in _cache:
             return _cache[key]
+        generation = _generation
     value = _read(db, key)
     if key == "assistant":
         # The connection and the generation fields come from the saved profile in use, when there is one
@@ -877,6 +883,9 @@ def load(db: Session, key: str) -> BaseModel:
 
         value = llmprofiles.overlay(db, value)
     with _lock:
+        if _generation != generation:
+            # Saved or cleared while this was reading: that value is the truth, this one is already old
+            return _cache.get(key, value)
         _cache[key] = value
     return value
 
@@ -903,7 +912,9 @@ def save(db: Session, key: str, value: BaseModel, username: str | None) -> None:
     else:
         db.add(AppSetting(key=key, value=stored, updated_by=username))
     db.commit()
+    global _generation
     with _lock:
+        _generation += 1
         _cache[key] = value
 
 
@@ -933,5 +944,7 @@ def public(key: str, value: BaseModel) -> dict[str, Any]:
 
 
 def clear_cache() -> None:
+    global _generation
     with _lock:
+        _generation += 1
         _cache.clear()
