@@ -43,13 +43,13 @@ import {
   IconSql,
   IconSun,
 } from '@tabler/icons-react';
-import { Suspense, lazy, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, memo, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useAlerts, useAssistant, useBranding, useInvestigate, useReferentials } from './api/hooks';
 import { BrandHeader } from './components/Brand';
 import { useAuth } from './auth/AuthContext';
 import LoginPage from './auth/LoginPage';
-import type { Me } from './api/types';
+import type { Me, ReferentialSummary } from './api/types';
 import ForcedPasswordChange from './auth/PasswordChange';
 import PendingPage from './auth/PendingPage';
 import { ConnectionBanner, ConnectionWatcher, UnreachableScreen } from './components/Connection';
@@ -229,6 +229,42 @@ function Content({ me, isLoading, unreachable }: { me: Me | null; isLoading: boo
   return <Shell />;
 }
 
+/**
+ * One referential in the sidebar.
+ *
+ * Memoised **on its fields**, not on the object: the referential list is polled, so every answer brings new
+ * objects with the same content, and comparing the identity would re-render the whole sidebar on each one.
+ * Only `name` and `health` are shown here, so only those two decide. This is what keeps an instance with
+ * several hundred referentials responsive — the sidebar is on every page.
+ *
+ * `title` rather than a `Tooltip`: a tooltip carries a floating-position hook per instance, and several
+ * hundred of them cost more than the whole rest of the page.
+ */
+const RefNavLink = memo(
+  function RefNavLink({ r, active, onClick }: { r: ReferentialSummary; active: boolean; onClick: () => void }) {
+    return (
+      <NavLink
+        component={Link}
+        to={`/r/${r.id}`}
+        onClick={onClick}
+        active={active}
+        style={{ borderRadius: 8 }}
+        label={
+          <Text size="sm" truncate>
+            {r.name}
+          </Text>
+        }
+        leftSection={
+          <span title={HEALTH[r.health].label} style={{ display: 'inline-flex' }}>
+            <HealthDot health={r.health} />
+          </span>
+        }
+      />
+    );
+  },
+  (a, b) => a.active === b.active && a.r.id === b.r.id && a.r.name === b.r.name && a.r.health === b.r.health,
+);
+
 function Shell() {
   const { me } = useAuth();
   const [opened, { toggle, close }] = useDisclosure();
@@ -248,6 +284,17 @@ function Shell() {
   }, [refs]);
 
   const path = location.pathname;
+  // Which referential the sidebar should highlight. Derived from the path rather than read from it by each
+  // entry: going from one page to another leaves it unchanged, so no entry re-renders.
+  const activeRef = useMemo(() => {
+    const m = /^\/r\/([^/]+)/.exec(path);
+    if (!m) return null;
+    try {
+      return decodeURIComponent(m[1]);
+    } catch {
+      return m[1];
+    }
+  }, [path]);
   const main: { to: string; label: string; icon: typeof IconBell; active: boolean; badge?: number }[] = [
     { to: '/', label: 'Dashboard', icon: IconLayoutDashboard, active: path === '/' },
     { to: '/search', label: 'Global search', icon: IconSearch, active: path.startsWith('/search') },
@@ -385,24 +432,7 @@ function Shell() {
                 {category}
               </Text>
               {items!.map((r) => (
-                <NavLink
-                  key={r.id}
-                  component={Link}
-                  to={`/r/${r.id}`}
-                  onClick={close}
-                  active={path.startsWith(`/r/${r.id}`)}
-                  style={{ borderRadius: 8 }}
-                  label={
-                    <Text size="sm" truncate>
-                      {r.name}
-                    </Text>
-                  }
-                  leftSection={
-                    <Tooltip label={HEALTH[r.health].label} position="right">
-                      <HealthDot health={r.health} />
-                    </Tooltip>
-                  }
-                />
+                <RefNavLink key={r.id} r={r} active={activeRef === r.id} onClick={close} />
               ))}
             </div>
           ))}

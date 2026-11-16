@@ -11,6 +11,7 @@ import {
   Loader,
   Menu,
   Modal,
+  Pagination,
   ScrollArea,
   SegmentedControl,
   Stack,
@@ -22,7 +23,7 @@ import {
 import { notifications } from '@mantine/notifications';
 import { IconAlertTriangle, IconDatabaseEdit, IconDatabasePlus, IconDots, IconDownload, IconPlayerStop, IconFileImport, IconFolderShare, IconGitMerge, IconEdit, IconFileCode, IconFileText, IconPlus, IconRefresh, IconSearch, IconTrash, IconUpload, IconWorld } from '@tabler/icons-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { api } from '../../api/client';
 import { useRefresh } from '../../api/hooks';
@@ -45,6 +46,10 @@ function sourceLabel(d: Definition) {
 }
 
 type StatusFilter = 'all' | 'error' | 'running' | 'stale' | 'quality';
+
+/** Rows per page. One row holds several tooltips and a menu, so the whole list at once is what the browser
+ * struggles with on an instance holding hundreds of referentials. */
+const PAGE = 50;
 
 const PHASES: Record<string, string> = {
   queued: 'Queued',
@@ -109,6 +114,7 @@ export default function ReferentialsAdminPage() {
   const [deleting, setDeleting] = useState<Definition[] | null>(null);
   const [purge, setPurge] = useState(true);
   const [selected, setSelected] = useState<string[]>([]);
+  const [page, setPage] = useState(1);
 
   const remove = useMutation({
     mutationFn: (defs: Definition[]) => api.deleteDefinitions(defs.map((d) => d.id), purge),
@@ -184,16 +190,26 @@ export default function ReferentialsAdminPage() {
     [data, filter, status],
   );
 
+  // One row carries a handful of tooltips and menus; a few hundred of them at once is what makes this page
+  // slow to open on a large instance, so it is paged. “All shown” below means the page being looked at.
+  const pages = Math.max(1, Math.ceil(rows.length / PAGE));
+  useEffect(() => {
+    if (page > pages) setPage(1);
+  }, [page, pages]);
+  // Changing the filter or the status tab shows a different set: start it at its first page
+  useEffect(() => setPage(1), [filter, status]);
+  const shown = useMemo(() => rows.slice((page - 1) * PAGE, page * PAGE), [rows, page]);
+
   const selectedDefs = useMemo(() => (data ?? []).filter((d) => selected.includes(d.id)), [data, selected]);
   // Only the referentials editable from the interface can be deleted (not the YAML and sync folder ones), and
   // only those with a source of their own can be updated (an internal referential is published from its rows)
   const toDelete = useMemo(() => selectedDefs.filter((d) => d.editable), [selectedDefs]);
   const toUpdate = useMemo(() => selectedDefs.filter((d) => d.kind !== 'internal'), [selectedDefs]);
   const toggle = (id: string, on: boolean) => setSelected((ids) => (on ? [...new Set([...ids, id])] : ids.filter((i) => i !== id)));
-  const allShownSelected = rows.length > 0 && rows.every((d) => selected.includes(d.id));
-  const someShownSelected = rows.some((d) => selected.includes(d.id));
+  const allShownSelected = shown.length > 0 && shown.every((d) => selected.includes(d.id));
+  const someShownSelected = shown.some((d) => selected.includes(d.id));
   const toggleAllShown = () =>
-    setSelected((ids) => (allShownSelected ? ids.filter((i) => !rows.some((d) => d.id === i)) : [...new Set([...ids, ...rows.map((d) => d.id)])]));
+    setSelected((ids) => (allShownSelected ? ids.filter((i) => !shown.some((d) => d.id === i)) : [...new Set([...ids, ...shown.map((d) => d.id)])]));
 
   return (
     <Stack gap="lg">
@@ -318,7 +334,7 @@ export default function ReferentialsAdminPage() {
                       aria-label="Select every referential shown"
                       checked={allShownSelected}
                       indeterminate={someShownSelected && !allShownSelected}
-                      disabled={rows.length === 0}
+                      disabled={shown.length === 0}
                       onChange={toggleAllShown}
                     />
                   </Table.Th>
@@ -332,7 +348,7 @@ export default function ReferentialsAdminPage() {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {rows.map((d) => {
+                {shown.map((d) => {
                   const src = sourceLabel(d);
                   const s = d.summary;
                   return (
@@ -481,6 +497,14 @@ export default function ReferentialsAdminPage() {
               </Table.Tbody>
             </Table>
           </Table.ScrollContainer>
+        )}
+        {pages > 1 && (
+          <Group justify="space-between" mt="md">
+            <Text size="sm" c="dimmed">
+              {(page - 1) * PAGE + 1}–{Math.min(page * PAGE, rows.length)} of {rows.length}
+            </Text>
+            <Pagination size="sm" total={pages} value={page} onChange={setPage} />
+          </Group>
         )}
       </Card>
       <YamlModal id={yamlId} onClose={() => setYamlId(null)} />

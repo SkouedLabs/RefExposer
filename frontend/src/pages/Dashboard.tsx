@@ -6,6 +6,7 @@ import {
   Card,
   Group,
   Loader,
+  Pagination,
   SegmentedControl,
   Select,
   SimpleGrid,
@@ -33,7 +34,7 @@ import {
   IconUserQuestion,
 } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client';
 import { useReferentials } from '../api/hooks';
@@ -44,7 +45,12 @@ import { MaskedBadge, Owner, VisibilityBadge } from '../components/Governance';
 import { HealthBadge, RunProgress, RunStatusBadge, TRIGGERS } from '../components/Status';
 import { describeCron, fmtBytes, fmtCompact, fmtDelta, fmtDuration, fmtNumber, fmtRelative } from '../lib/format';
 
-function RefCard({ r }: { r: ReferentialSummary }) {
+/** How many cards one page of the grid holds. A card is a dozen badges and a few tooltips: past a hundred of
+ * them the browser spends longer laying the page out than the server spends answering, so the grid is paged
+ * rather than made longer. */
+const PAGE = 24;
+
+function RefCardInner({ r }: { r: ReferentialSummary }) {
   const delta = r.row_count != null && r.previous_row_count != null ? r.row_count - r.previous_row_count : null;
   return (
     <Card className="ref-card" padding="lg">
@@ -200,6 +206,34 @@ function RefCard({ r }: { r: ReferentialSummary }) {
   );
 }
 
+/**
+ * Memoised on the fields it draws rather than on the object: the referential list is polled, so every answer
+ * brings new objects holding the same thing, and comparing identities would redraw every card on each poll.
+ * `current_run` is compared on the phase and the progress, which is all the card shows of it.
+ */
+const RefCard = memo(RefCardInner, (a, b) => {
+  const [x, y] = [a.r, b.r];
+  return (
+    x === y ||
+    (x.id === y.id &&
+      x.name === y.name &&
+      x.health === y.health &&
+      x.row_count === y.row_count &&
+      x.previous_row_count === y.previous_row_count &&
+      x.storage_size === y.storage_size &&
+      x.last_success_at === y.last_success_at &&
+      x.next_run_at === y.next_run_at &&
+      x.pinned === y.pinned &&
+      x.access === y.access &&
+      x.has_data === y.has_data &&
+      x.current_run?.id === y.current_run?.id &&
+      x.current_run?.status === y.current_run?.status &&
+      x.current_run?.phase === y.current_run?.phase &&
+      x.current_run?.progress.done === y.current_run?.progress.done &&
+      x.current_run?.progress.total === y.current_run?.progress.total)
+  );
+});
+
 function Activity() {
   const { data } = useQuery({ queryKey: ['activity'], queryFn: () => api.activity(12), refetchInterval: 5000 });
   return (
@@ -254,6 +288,7 @@ export default function Dashboard() {
   const [health, setHealth] = useState('all');
   const [visibility, setVisibility] = useState('all');
   const [category, setCategory] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
   const categories = useMemo(() => [...new Set((refs ?? []).map((r) => r.category))].sort(), [refs]);
   const filtered = useMemo(() => {
@@ -268,6 +303,13 @@ export default function Dashboard() {
       return [r.name, r.id, r.description, r.category, ...r.tags].join(' ').toLowerCase().includes(f);
     });
   }, [refs, filter, health, visibility, category]);
+  // A narrowed filter can leave fewer pages than the one being looked at: come back to the first rather
+  // than showing an empty grid
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE));
+  useEffect(() => {
+    if (page > pages) setPage(1);
+  }, [page, pages]);
+  const shown = useMemo(() => filtered.slice((page - 1) * PAGE, page * PAGE), [filtered, page]);
 
   if (isLoading)
     return (
@@ -400,11 +442,21 @@ export default function Dashboard() {
             : 'No referential matches the filters.'}
         </EmptyState>
       ) : (
-        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }}>
-          {filtered.map((r) => (
-            <RefCard key={r.id} r={r} />
-          ))}
-        </SimpleGrid>
+        <>
+          <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }}>
+            {shown.map((r) => (
+              <RefCard key={r.id} r={r} />
+            ))}
+          </SimpleGrid>
+          {pages > 1 && (
+            <Group justify="space-between">
+              <Text size="sm" c="dimmed">
+                {(page - 1) * PAGE + 1}–{Math.min(page * PAGE, filtered.length)} of {fmtNumber(filtered.length)}
+              </Text>
+              <Pagination size="sm" total={pages} value={page} onChange={setPage} />
+            </Group>
+          )}
+        </>
       )}
 
       <Activity />

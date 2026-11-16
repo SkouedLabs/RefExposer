@@ -1,7 +1,7 @@
-# CybrefV2 referentials for RefExposer (https://github.com/emeryn/CybrefV2)
+# Cybref referentials for RefExposer (https://github.com/skouedlabs/cybref)
 #
 # 124 cybersecurity referentials (threat intelligence, LOL binaries, vulnerabilities, ATT&CK and other frameworks,
-# cloud / VPN / Tor IP ranges, registries, detection lists), read from the daily mirror of CybrefV2 on GitHub.
+# cloud / VPN / Tor IP ranges, registries, detection lists), read from the daily mirror of Cybref on GitHub.
 #
 # Import: Administration › Referentials › Import (the plan shows what is created), or
 #         POST /api/admin/config/import, or drop this file into config/ (read like any definition file).
@@ -17,7 +17,7 @@ refexposer_export:
   version: 1
   exported_at: '2026-10-17T00:00:00+00:00'
   exported_by: examples/cybref
-  instance: https://github.com/emeryn/CybrefV2
+  instance: https://github.com/skouedlabs/cybref
   credentials: masked
   referentials: 124
 referentials:
@@ -30,11 +30,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://feodotracker.abuse.ch/
-  owner: CybrefV2 (from feodotracker.abuse.ch)
+  owner: Cybref (from feodotracker.abuse.ch)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/abusech_feodotracker_c2_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/abusech_feodotracker_c2_ips.json
   format: json
   key: ip_address
   schedule: 47 7 * * *
@@ -55,11 +55,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://bazaar.abuse.ch/
-  owner: CybrefV2 (from bazaar.abuse.ch)
+  owner: Cybref (from bazaar.abuse.ch)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/abusech_malwarebazaar_recent.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/abusech_malwarebazaar_recent.csv
   format: csv
   options:
     comment: '#'
@@ -102,11 +102,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://sslbl.abuse.ch/
-  owner: CybrefV2 (from sslbl.abuse.ch)
+  owner: Cybref (from sslbl.abuse.ch)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/abusech_sslbl_certificates.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/abusech_sslbl_certificates.csv
   format: csv
   options:
     comment: '#'
@@ -134,11 +134,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://threatfox.abuse.ch/
-  owner: CybrefV2 (from threatfox.abuse.ch)
+  owner: Cybref (from threatfox.abuse.ch)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/abusech_threatfox_recent.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/abusech_threatfox_recent.json
   format: json
   options:
     records_path: '*'
@@ -163,11 +163,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://urlhaus.abuse.ch/
-  owner: CybrefV2 (from urlhaus.abuse.ch)
+  owner: Cybref (from urlhaus.abuse.ch)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/abusech_urlhaus_online.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/abusech_urlhaus_online.csv
   format: csv
   key: url
   schedule: 41 7 * * *
@@ -188,11 +188,11 @@ referentials:
   - network
   - weekly
   homepage: https://support.apple.com/en-us/119829
-  owner: CybrefV2 (from search.developer.apple.com)
+  owner: Cybref (from search.developer.apple.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/apple_applebot_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/apple_applebot_ips.json
   format: json
   options:
     records_path: prefixes
@@ -215,11 +215,11 @@ referentials:
   - network
   - weekly
   homepage: https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay/
-  owner: CybrefV2 (from mask-api.icloud.com)
+  owner: Cybref (from mask-api.icloud.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/apple_private_relay_ranges.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/apple_private_relay_ranges.csv
   format: csv
   options:
     header: false
@@ -252,11 +252,11 @@ referentials:
   - network
   - weekly
   homepage: https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html
-  owner: CybrefV2 (from ip-ranges.amazonaws.com)
+  owner: Cybref (from ip-ranges.amazonaws.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/aws_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/aws_ip_ranges.json
   format: json
   options:
     records_path: prefixes
@@ -279,11 +279,11 @@ referentials:
   - network
   - weekly
   homepage: https://github.com/enzo-g/azureIPranges
-  owner: CybrefV2 (from enzo-g.github.io)
+  owner: Cybref (from enzo-g.github.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/azure_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/azure_ip_ranges.json
   format: json
   options:
     records_path: values
@@ -306,11 +306,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/badbot_fake_googlebots.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/badbot_fake_googlebots.txt
   format: txt
   key: value
   schedule: 33 7 * * *
@@ -331,11 +331,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/badbot_referrers.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/badbot_referrers.txt
   format: txt
   key: value
   schedule: 15 7 * * *
@@ -356,11 +356,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/badbot_user_agents.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/badbot_user_agents.txt
   format: txt
   key: value
   schedule: 38 7 * * *
@@ -381,11 +381,11 @@ referentials:
   - network
   - weekly
   homepage: https://www.bing.com/webmasters/help/how-to-verify-bingbot-3905dc26
-  owner: CybrefV2 (from www.bing.com)
+  owner: Cybref (from www.bing.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/bing_bingbot_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/bing_bingbot_ips.json
   format: json
   options:
     records_path: prefixes
@@ -408,11 +408,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.blocklist.de/
-  owner: CybrefV2 (from lists.blocklist.de)
+  owner: Cybref (from lists.blocklist.de)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/blocklistde_all.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/blocklistde_all.txt
   format: txt
   key: value
   schedule: 41 7 * * *
@@ -433,11 +433,11 @@ referentials:
   - lol
   - weekly
   homepage: https://www.bootloaders.io/
-  owner: CybrefV2 (from www.bootloaders.io)
+  owner: Cybref (from www.bootloaders.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/bootloaders.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/bootloaders.json
   format: json
   key: Id
   schedule: 23 7 * * *
@@ -458,11 +458,11 @@ referentials:
   - vulnerabilities
   - daily
   homepage: https://www.cert.ssi.gouv.fr/alerte/
-  owner: CybrefV2 (from www.cert.ssi.gouv.fr)
+  owner: Cybref (from www.cert.ssi.gouv.fr)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/certfr_alertes.xml
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/certfr_alertes.xml
   format: xml
   key: link
   schedule: 44 7 * * *
@@ -483,11 +483,11 @@ referentials:
   - vulnerabilities
   - daily
   homepage: https://www.cert.ssi.gouv.fr/avis/
-  owner: CybrefV2 (from www.cert.ssi.gouv.fr)
+  owner: Cybref (from www.cert.ssi.gouv.fr)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/certfr_avis.xml
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/certfr_avis.xml
   format: xml
   key: link
   schedule: 33 7 * * *
@@ -508,11 +508,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://cinsscore.com/
-  owner: CybrefV2 (from cinsscore.com)
+  owner: Cybref (from cinsscore.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/cinsscore_badguys.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/cinsscore_badguys.txt
   format: txt
   key: value
   schedule: 33 7 * * *
@@ -533,11 +533,11 @@ referentials:
   - vulnerabilities
   - daily
   homepage: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
-  owner: CybrefV2 (from www.cisa.gov)
+  owner: Cybref (from www.cisa.gov)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/cisa_kev.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/cisa_kev.json
   format: json
   options:
     records_path: vulnerabilities
@@ -560,11 +560,11 @@ referentials:
   - network
   - weekly
   homepage: https://www.cloudflare.com/ips/
-  owner: CybrefV2 (from api.cloudflare.com)
+  owner: Cybref (from api.cloudflare.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/cloudflare_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/cloudflare_ip_ranges.json
   format: json
   transform: SELECT unnest(result.ipv4_cidrs || result.ipv6_cidrs) AS cidr FROM {source}
   key: cidr
@@ -586,11 +586,11 @@ referentials:
   - network
   - weekly
   homepage: https://db-ip.com/db/download/ip-to-asn-lite
-  owner: CybrefV2 (from download.db-ip.com)
+  owner: Cybref (from download.db-ip.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/dbip_asn_lite.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/dbip_asn_lite.csv
   format: csv
   options:
     header: false
@@ -620,11 +620,11 @@ referentials:
   - network
   - weekly
   homepage: https://db-ip.com/db/download/ip-to-country-lite
-  owner: CybrefV2 (from download.db-ip.com)
+  owner: Cybref (from download.db-ip.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/dbip_country_lite.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/dbip_country_lite.csv
   format: csv
   options:
     header: false
@@ -653,11 +653,11 @@ referentials:
   - network
   - weekly
   homepage: https://docs.digitalocean.com/platform/
-  owner: CybrefV2 (from digitalocean.com)
+  owner: Cybref (from digitalocean.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/digitalocean_ip_ranges.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/digitalocean_ip_ranges.csv
   format: csv
   key: 5.101.96.0/21
   schedule: 53 7 * * *
@@ -678,11 +678,11 @@ referentials:
   - domains
   - weekly
   homepage: https://github.com/disposable-email-domains/disposable-email-domains
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/disposable_email_domains.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/disposable_email_domains.txt
   format: txt
   key: value
   schedule: 55 7 * * *
@@ -703,11 +703,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://isc.sans.edu/block.html
-  owner: CybrefV2 (from feeds.dshield.org)
+  owner: Cybref (from feeds.dshield.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/dshield_block.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/dshield_block.txt
   format: txt
   key: value
   schedule: 49 7 * * *
@@ -728,11 +728,11 @@ referentials:
   - vulnerabilities
   - daily
   homepage: https://euvd.enisa.europa.eu/
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/enisa_euvd_exploited.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/enisa_euvd_exploited.json
   format: json
   key: id
   schedule: 28 7 * * *
@@ -753,11 +753,11 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://www.exploit-db.com/
-  owner: CybrefV2 (from gitlab.com)
+  owner: Cybref (from gitlab.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/exploitdb_exploits.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/exploitdb_exploits.csv
   format: csv
   schedule: 30 7 * * *
   key: id
@@ -778,11 +778,11 @@ referentials:
   - network
   - weekly
   homepage: https://www.fastly.com/documentation/reference/api/utils/public-ip-list/
-  owner: CybrefV2 (from api.fastly.com)
+  owner: Cybref (from api.fastly.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/fastly_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/fastly_ip_ranges.json
   format: json
   transform: SELECT unnest(addresses || ipv6_addresses) AS cidr FROM {source}
   key: cidr
@@ -804,11 +804,11 @@ referentials:
   - lol
   - weekly
   homepage: https://filesec.io/
-  owner: CybrefV2 (from filesec.io)
+  owner: Cybref (from filesec.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/filesec_extensions.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/filesec_extensions.csv
   format: csv
   key: Extension
   schedule: 33 7 * * *
@@ -829,11 +829,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://iplists.firehol.org/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/firehol_level1.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/firehol_level1.txt
   format: txt
   key: value
   schedule: 49 7 * * *
@@ -854,11 +854,11 @@ referentials:
   - vulnerabilities
   - daily
   homepage: https://www.first.org/epss/
-  owner: CybrefV2 (from epss.cyentia.com, epss.empiricalsecurity.com)
+  owner: Cybref (from epss.cyentia.com, epss.empiricalsecurity.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/first_epss.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/first_epss.csv
   format: csv
   key: cve
   schedule: 54 7 * * *
@@ -879,11 +879,11 @@ referentials:
   - domains
   - weekly
   homepage: https://github.com/Kikobeats/free-email-domains
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/free_email_domains.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/free_email_domains.json
   format: json
   key: json
   schedule: 15 7 * * *
@@ -904,11 +904,11 @@ referentials:
   - network
   - weekly
   homepage: https://cloud.google.com/compute/docs/faq#find_ip_range
-  owner: CybrefV2 (from www.gstatic.com)
+  owner: Cybref (from www.gstatic.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/gcp_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/gcp_ip_ranges.json
   format: json
   options:
     records_path: prefixes
@@ -922,11 +922,11 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://github.com/advisories
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/github_advisories.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/github_advisories.json.gz
   format: json
   key: id
   schedule: 51 7 * * *
@@ -947,11 +947,11 @@ referentials:
   - network
   - weekly
   homepage: https://docs.github.com/en/rest/meta/meta
-  owner: CybrefV2 (from api.github.com)
+  owner: Cybref (from api.github.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/github_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/github_ip_ranges.json
   format: json
   transform: SELECT service, unnest(cidrs) AS cidr FROM (UNPIVOT (SELECT hooks, web, api, git, github_enterprise_importer,
     packages, pages, importer, actions, actions_macos, codespaces, copilot FROM {source}) ON COLUMNS(*) INTO NAME
@@ -975,11 +975,11 @@ referentials:
   - network
   - weekly
   homepage: https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot
-  owner: CybrefV2 (from developers.google.com)
+  owner: Cybref (from developers.google.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/google_googlebot_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/google_googlebot_ips.json
   format: json
   options:
     records_path: prefixes
@@ -993,11 +993,11 @@ referentials:
   - network
   - weekly
   homepage: https://support.google.com/a/answer/10026322
-  owner: CybrefV2 (from www.gstatic.com)
+  owner: Cybref (from www.gstatic.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/google_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/google_ip_ranges.json
   format: json
   options:
     records_path: prefixes
@@ -1012,11 +1012,11 @@ referentials:
   - registries
   - weekly
   homepage: https://support.google.com/googleplay/answer/1727131
-  owner: CybrefV2 (from storage.googleapis.com)
+  owner: Cybref (from storage.googleapis.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/google_play_devices.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/google_play_devices.csv
   format: csv
   schedule: 52 7 * * *
   key: Model
@@ -1037,11 +1037,11 @@ referentials:
   - network
   - weekly
   homepage: https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot
-  owner: CybrefV2 (from developers.google.com)
+  owner: Cybref (from developers.google.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/google_special_crawlers_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/google_special_crawlers_ips.json
   format: json
   options:
     records_path: prefixes
@@ -1055,11 +1055,11 @@ referentials:
   - lol
   - weekly
   homepage: https://gtfobins.github.io/
-  owner: CybrefV2 (from gtfobins.org)
+  owner: Cybref (from gtfobins.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/gtfobins.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/gtfobins.json
   format: json
   options:
     records_path: executables.*
@@ -1082,11 +1082,11 @@ referentials:
   - lol
   - weekly
   homepage: https://hijacklibs.net/
-  owner: CybrefV2 (from hijacklibs.net)
+  owner: Cybref (from hijacklibs.net)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/hijacklibs.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/hijacklibs.json
   format: json
   key: url
   schedule: 53 7 * * *
@@ -1107,11 +1107,11 @@ referentials:
   - registries
   - weekly
   homepage: https://www.iana.org/assignments/service-names-port-numbers/
-  owner: CybrefV2 (from www.iana.org)
+  owner: Cybref (from www.iana.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/iana_service_ports.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/iana_service_ports.csv
   format: csv
   schedule: 49 7 * * *
 - id: iana_tlds
@@ -1123,11 +1123,11 @@ referentials:
   - domains
   - weekly
   homepage: https://www.iana.org/domains/root/db
-  owner: CybrefV2 (from data.iana.org)
+  owner: Cybref (from data.iana.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/iana_tlds.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/iana_tlds.txt
   format: txt
   key: value
   schedule: 23 7 * * *
@@ -1148,11 +1148,11 @@ referentials:
   - registries
   - weekly
   homepage: https://standards.ieee.org/products-programs/regauth/
-  owner: CybrefV2 (from standards-oui.ieee.org)
+  owner: Cybref (from standards-oui.ieee.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/ieee_cid.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/ieee_cid.csv
   format: csv
   key: Assignment
   schedule: 5 7 * * *
@@ -1173,11 +1173,11 @@ referentials:
   - registries
   - weekly
   homepage: https://standards.ieee.org/products-programs/regauth/
-  owner: CybrefV2 (from standards-oui.ieee.org)
+  owner: Cybref (from standards-oui.ieee.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/ieee_iab.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/ieee_iab.csv
   format: csv
   key: Assignment
   schedule: 39 7 * * *
@@ -1198,11 +1198,11 @@ referentials:
   - registries
   - weekly
   homepage: https://standards.ieee.org/products-programs/regauth/
-  owner: CybrefV2 (from standards-oui.ieee.org)
+  owner: Cybref (from standards-oui.ieee.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/ieee_manid.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/ieee_manid.csv
   format: csv
   key: Assignment
   schedule: 50 7 * * *
@@ -1223,11 +1223,11 @@ referentials:
   - registries
   - weekly
   homepage: https://standards.ieee.org/products-programs/regauth/
-  owner: CybrefV2 (from standards-oui.ieee.org)
+  owner: Cybref (from standards-oui.ieee.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/ieee_oui.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/ieee_oui.csv
   format: csv
   schedule: 41 7 * * *
   key: Assignment
@@ -1248,11 +1248,11 @@ referentials:
   - registries
   - weekly
   homepage: https://standards.ieee.org/products-programs/regauth/
-  owner: CybrefV2 (from standards-oui.ieee.org)
+  owner: Cybref (from standards-oui.ieee.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/ieee_oui36.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/ieee_oui36.csv
   format: csv
   key: Assignment
   schedule: 26 7 * * *
@@ -1273,11 +1273,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/ihebski/DefaultCreds-cheat-sheet
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/ihebski_default_credentials.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/ihebski_default_credentials.csv
   format: csv
   schedule: 21 7 * * *
 - id: iptoasn_ipv4
@@ -1289,11 +1289,11 @@ referentials:
   - network
   - weekly
   homepage: https://iptoasn.com/
-  owner: CybrefV2 (from iptoasn.com)
+  owner: Cybref (from iptoasn.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/iptoasn_ipv4.tsv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/iptoasn_ipv4.tsv
   format: tsv
   options:
     header: false
@@ -1325,11 +1325,11 @@ referentials:
   - network
   - weekly
   homepage: https://iptoasn.com/
-  owner: CybrefV2 (from iptoasn.com)
+  owner: Cybref (from iptoasn.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/iptoasn_ipv6.tsv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/iptoasn_ipv6.tsv
   format: tsv
   options:
     header: false
@@ -1361,11 +1361,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lofl-project.github.io/
-  owner: CybrefV2 (from lofl-project.github.io)
+  owner: Cybref (from lofl-project.github.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lofl.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lofl.json
   format: json
   key: Name
   schedule: 51 7 * * *
@@ -1386,11 +1386,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lolapps-project.github.io/
-  owner: CybrefV2 (from lolapps-project.github.io)
+  owner: Cybref (from lolapps-project.github.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lolapps.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lolapps.json
   format: json
   key: Name
   schedule: 47 7 * * *
@@ -1411,11 +1411,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lolbas-project.github.io/
-  owner: CybrefV2 (from lolbas-project.github.io)
+  owner: Cybref (from lolbas-project.github.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lolbas.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lolbas.json
   format: json
   key: Name
   schedule: 44 7 * * *
@@ -1436,11 +1436,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lolc2.github.io/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lolc2.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lolc2.json
   format: json
   options:
     records_path: '*'
@@ -1463,11 +1463,11 @@ referentials:
   - lol
   - weekly
   homepage: https://www.loldrivers.io/
-  owner: CybrefV2 (from www.loldrivers.io)
+  owner: Cybref (from www.loldrivers.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/loldrivers.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/loldrivers.json
   format: json
   key: Id
   schedule: 34 7 * * *
@@ -1488,11 +1488,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lolesxi-project.github.io/LOLESXi/
-  owner: CybrefV2 (from lolesxi-project.github.io)
+  owner: Cybref (from lolesxi-project.github.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lolesxi.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lolesxi.json
   format: json
   key: Name
   schedule: 16 7 * * *
@@ -1513,11 +1513,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lolrmm.io/
-  owner: CybrefV2 (from lolrmm.io)
+  owner: Cybref (from lolrmm.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lolrmm.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lolrmm.json
   format: json
   options:
     maximum_depth: 3
@@ -1540,11 +1540,11 @@ referentials:
   - lol
   - weekly
   homepage: https://www.loobins.io/
-  owner: CybrefV2 (from www.loobins.io)
+  owner: Cybref (from www.loobins.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/loobins.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/loobins.json
   format: json
   key: name
   schedule: 19 7 * * *
@@ -1565,11 +1565,11 @@ referentials:
   - lol
   - weekly
   homepage: https://github.com/enesilhaydin/lothardware
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lothardware.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lothardware.json
   format: json
   options:
     records_path: products
@@ -1592,11 +1592,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lots-project.com/
-  owner: CybrefV2 (from lots-project.com)
+  owner: Cybref (from lots-project.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lots.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lots.csv
   format: csv
   key: Website
   schedule: 16 7 * * *
@@ -1617,11 +1617,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lottunnels.github.io/
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lottunnels_binaries.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lottunnels_binaries.json
   format: json
   key: Name
   schedule: 55 7 * * *
@@ -1642,11 +1642,11 @@ referentials:
   - lol
   - weekly
   homepage: https://lottunnels.github.io/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/lottunnels_domains.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/lottunnels_domains.csv
   format: csv
   schedule: 35 7 * * *
   key: domain
@@ -1667,11 +1667,11 @@ referentials:
   - lol
   - weekly
   homepage: https://malapi.io/
-  owner: CybrefV2 (from malapi.io)
+  owner: Cybref (from malapi.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/lol/malapi_winapi.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/lol/malapi_winapi.csv
   format: csv
   schedule: 45 7 * * *
   key: API
@@ -1693,11 +1693,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://gitlab.com/malware-filter/phishing-filter
-  owner: CybrefV2 (from malware-filter.gitlab.io)
+  owner: Cybref (from malware-filter.gitlab.io)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/malwarefilter_phishing_domains.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/malwarefilter_phishing_domains.txt
   format: txt
   key: value
   schedule: 42 7 * * *
@@ -1718,11 +1718,11 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://github.com/rapid7/metasploit-framework
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/metasploit_modules.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/metasploit_modules.json
   format: json
   options:
     records_path: '*'
@@ -1746,11 +1746,11 @@ referentials:
   - network
   - weekly
   homepage: https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service
-  owner: CybrefV2 (from endpoints.office.com)
+  owner: Cybref (from endpoints.office.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/microsoft365_endpoints.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/microsoft365_endpoints.json
   format: json
   key: id
   schedule: 41 7 * * *
@@ -1772,11 +1772,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/MISP/misp-warninglists
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/misp_warninglists.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/misp_warninglists.json.gz
   format: json
   options:
     records_path: '*'
@@ -1802,11 +1802,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://attack.mitre.org/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_attack_enterprise.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_attack_enterprise.json
   format: json
   options:
     records_path: objects
@@ -1829,11 +1829,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://attack.mitre.org/matrices/ics/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_attack_ics.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_attack_ics.json
   format: json
   options:
     records_path: objects
@@ -1856,11 +1856,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://attack.mitre.org/matrices/mobile/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_attack_mobile.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_attack_mobile.json
   format: json
   options:
     records_path: objects
@@ -1883,11 +1883,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://capec.mitre.org/
-  owner: CybrefV2 (from capec.mitre.org)
+  owner: Cybref (from capec.mitre.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_capec.xml
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_capec.xml
   format: xml
   key: ID
   schedule: 42 7 * * *
@@ -1908,11 +1908,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://cwe.mitre.org/
-  owner: CybrefV2 (from cwe.mitre.org)
+  owner: Cybref (from cwe.mitre.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_cwe.xml
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_cwe.xml
   format: xml
   key: ID
   schedule: 31 7 * * *
@@ -1933,11 +1933,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://d3fend.mitre.org/
-  owner: CybrefV2 (from d3fend.mitre.org)
+  owner: Cybref (from d3fend.mitre.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/mitre_d3fend.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/mitre_d3fend.json
   format: json
   options:
     records_path: '@graph'
@@ -1961,29 +1961,29 @@ referentials:
   - cybref
   - vulnerabilities
   - weekly
-  homepage: https://github.com/emeryn/CybrefV2/tree/download/src/mcb
-  owner: CybrefV2
+  homepage: https://github.com/skouedlabs/cybref/tree/download/src/mcb
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2010.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2011.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2012.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2013.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2014.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2015.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2016.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2017.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2018.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2019.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2020.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2021.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2022.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2023.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2024.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2025.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/cves/2026.json
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/mobile/index.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2010.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2011.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2012.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2013.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2014.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2015.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2016.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2017.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2018.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2019.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2020.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2021.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2022.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2023.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2024.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2025.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/cves/2026.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/mobile/index.json
   format: json
   options:
     records_path: '*'
@@ -2006,11 +2006,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_blockchain_rpc.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_blockchain_rpc.csv
   format: csv
   key: dest
   schedule: 40 7 * * *
@@ -2031,11 +2031,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_doh_servers.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_doh_servers.csv
   format: csv
   schedule: 50 7 * * *
   key: dest_host
@@ -2056,11 +2056,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_ransomware_extensions.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_ransomware_extensions.csv
   format: csv
   schedule: 2 7 * * *
   key: file_path
@@ -2081,11 +2081,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_ransomware_notes.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_ransomware_notes.csv
   format: csv
   schedule: 57 7 * * *
   key: file_name
@@ -2106,11 +2106,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_double_extensions.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_double_extensions.csv
   format: csv
   schedule: 32 7 * * *
   key: file_name
@@ -2131,11 +2131,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_firewall_rules.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_firewall_rules.csv
   format: csv
   schedule: 53 7 * * *
   key: rule_name
@@ -2156,11 +2156,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_hostnames.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_hostnames.csv
   format: csv
   key: src_nt_host
   schedule: 56 7 * * *
@@ -2181,11 +2181,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_mac_addresses.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_mac_addresses.csv
   format: csv
   key: src_mac
   schedule: 21 7 * * *
@@ -2206,11 +2206,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_mutexes.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_mutexes.csv
   format: csv
   schedule: 29 7 * * *
   key: mutex
@@ -2231,11 +2231,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_named_pipes.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_named_pipes.csv
   format: csv
   schedule: 48 7 * * *
   key: pipe_name
@@ -2256,11 +2256,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_ports.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_ports.csv
   format: csv
   schedule: 42 7 * * *
   key: dest_port
@@ -2281,11 +2281,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_scheduled_tasks.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_scheduled_tasks.csv
   format: csv
   schedule: 12 7 * * *
   key: TaskName
@@ -2306,11 +2306,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_services.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_services.csv
   format: csv
   schedule: 1 7 * * *
   key: service_name
@@ -2331,11 +2331,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_tlds.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_tlds.csv
   format: csv
   schedule: 10 7 * * *
   key: url_domain
@@ -2356,11 +2356,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_usb_ids.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_usb_ids.csv
   format: csv
   schedule: 11 7 * * *
   key: device_id
@@ -2381,11 +2381,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_suspicious_user_agents.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_suspicious_user_agents.csv
   format: csv
   schedule: 4 7 * * *
   key: http_user_agent
@@ -2406,11 +2406,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/mthcht/awesome-lists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/mthcht_windows_asr_rules.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/mthcht_windows_asr_rules.csv
   format: csv
   key: id
   schedule: 18 7 * * *
@@ -2431,11 +2431,11 @@ referentials:
   - network
   - weekly
   homepage: https://mullvad.net/en/servers
-  owner: CybrefV2 (from api.mullvad.net)
+  owner: Cybref (from api.mullvad.net)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/mullvad_relays.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/mullvad_relays.json
   format: json
   key: hostname
   schedule: 31 7 * * *
@@ -2456,11 +2456,11 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://github.com/projectdiscovery/nuclei-templates
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nuclei_cve_templates.jsonl
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nuclei_cve_templates.jsonl
   format: jsonl
   key: ID
   schedule: 37 7 * * *
@@ -2482,38 +2482,38 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://nvd.nist.gov/products/cpe
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/0-9.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/a.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/b.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/c.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/d.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/e.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/f.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/g.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/h.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/i.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/j.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/k.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/l.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/m.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/n.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/o.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/other.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/p.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/q.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/r.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/s.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/t.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/u.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/v.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/w.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/x.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/y.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/cpe/z.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/0-9.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/a.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/b.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/c.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/d.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/e.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/f.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/g.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/h.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/i.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/j.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/k.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/l.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/m.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/n.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/o.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/other.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/p.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/q.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/r.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/s.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/t.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/u.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/v.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/w.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/x.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/y.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/cpe/z.json.gz
   format: json
   options:
     records_path: products
@@ -2537,37 +2537,37 @@ referentials:
   - vulnerabilities
   - weekly
   homepage: https://nvd.nist.gov/vuln/data-feeds
-  owner: CybrefV2
+  owner: Cybref
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2002.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2003.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2004.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2005.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2006.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2007.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2008.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2009.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2010.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2011.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2012.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2013.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2014.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2015.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2016.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2017.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2018.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2019.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2020.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2021.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2022.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2023.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2024.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2025.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-2026.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-modified.json.gz
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/vulnerabilities/nvd/nvdcve-2.0-recent.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2002.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2003.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2004.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2005.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2006.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2007.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2008.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2009.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2010.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2011.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2012.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2013.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2014.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2015.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2016.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2017.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2018.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2019.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2020.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2021.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2022.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2023.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2024.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2025.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-2026.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-modified.json.gz
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/vulnerabilities/nvd/nvdcve-2.0-recent.json.gz
   format: json
   options:
     records_path: vulnerabilities
@@ -2590,11 +2590,11 @@ referentials:
   - network
   - weekly
   homepage: https://platform.openai.com/docs/bots
-  owner: CybrefV2 (from openai.com)
+  owner: Cybref (from openai.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/openai_chatgpt_user_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/openai_chatgpt_user_ips.json
   format: json
   options:
     records_path: prefixes
@@ -2617,11 +2617,11 @@ referentials:
   - network
   - weekly
   homepage: https://platform.openai.com/docs/bots
-  owner: CybrefV2 (from openai.com)
+  owner: Cybref (from openai.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/openai_gptbot_ips.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/openai_gptbot_ips.json
   format: json
   options:
     records_path: prefixes
@@ -2644,11 +2644,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://openphish.com/
-  owner: CybrefV2 (from openphish.com)
+  owner: Cybref (from openphish.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/openphish_urls.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/openphish_urls.txt
   format: txt
   key: value
   schedule: 9 7 * * *
@@ -2669,11 +2669,11 @@ referentials:
   - network
   - weekly
   homepage: https://docs.oracle.com/en-us/iaas/Content/General/Concepts/addressranges.htm
-  owner: CybrefV2 (from docs.oracle.com)
+  owner: Cybref (from docs.oracle.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/oracle_ip_ranges.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/oracle_ip_ranges.json
   format: json
   options:
     records_path: regions
@@ -2696,11 +2696,11 @@ referentials:
   - registries
   - weekly
   homepage: https://pci-ids.ucw.cz/
-  owner: CybrefV2 (from pci-ids.ucw.cz)
+  owner: Cybref (from pci-ids.ucw.cz)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/pci_ids.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/pci_ids.txt
   format: txt
   schedule: 27 7 * * *
   key: value
@@ -2721,11 +2721,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://rules.emergingthreats.net/
-  owner: CybrefV2 (from rules.emergingthreats.net)
+  owner: Cybref (from rules.emergingthreats.net)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/proofpoint_et_compromised_ips.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/proofpoint_et_compromised_ips.txt
   format: txt
   key: value
   schedule: 54 7 * * *
@@ -2746,11 +2746,11 @@ referentials:
   - domains
   - weekly
   homepage: https://publicsuffix.org/
-  owner: CybrefV2 (from publicsuffix.org)
+  owner: Cybref (from publicsuffix.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/publicsuffix_list.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/publicsuffix_list.txt
   format: txt
   schedule: 34 7 * * *
   key: value
@@ -2771,11 +2771,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.ransomware.live/
-  owner: CybrefV2 (from api.ransomware.live)
+  owner: Cybref (from api.ransomware.live)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/ransomwarelive_groups.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/ransomwarelive_groups.json
   format: json
   key: name
   schedule: 56 7 * * *
@@ -2796,11 +2796,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.ransomware.live/
-  owner: CybrefV2 (from api.ransomware.live)
+  owner: Cybref (from api.ransomware.live)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/ransomwarelive_victims_recent.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/ransomwarelive_victims_recent.json
   format: json
   key: url
   schedule: 54 7 * * *
@@ -2823,11 +2823,11 @@ referentials:
   - frameworks
   - weekly
   homepage: https://atomicredteam.io/
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/frameworks/redcanary_atomic_tests.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/frameworks/redcanary_atomic_tests.csv
   format: csv
   schedule: 44 7 * * *
   key: Test GUID
@@ -2848,11 +2848,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/danielmiessler/SecLists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/seclists_default_passwords.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/seclists_default_passwords.csv
   format: csv
   schedule: 14 7 * * *
 - id: seclists_secret_keywords
@@ -2864,11 +2864,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/danielmiessler/SecLists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/seclists_secret_keywords.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/seclists_secret_keywords.txt
   format: txt
   schedule: 3 7 * * *
   key: value
@@ -2889,11 +2889,11 @@ referentials:
   - detection
   - weekly
   homepage: https://github.com/danielmiessler/SecLists
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/detection/seclists_webshells.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/detection/seclists_webshells.txt
   format: txt
   key: value
   schedule: 15 7 * * *
@@ -2914,11 +2914,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.spamhaus.org/blocklists/do-not-route-or-peer/
-  owner: CybrefV2 (from www.spamhaus.org)
+  owner: Cybref (from www.spamhaus.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/spamhaus_asndrop.jsonl
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/spamhaus_asndrop.jsonl
   format: jsonl
   schedule: 16 7 * * *
   key: asn
@@ -2939,11 +2939,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.spamhaus.org/blocklists/do-not-route-or-peer/
-  owner: CybrefV2 (from www.spamhaus.org)
+  owner: Cybref (from www.spamhaus.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/spamhaus_drop_ipv4.jsonl
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/spamhaus_drop_ipv4.jsonl
   format: jsonl
   schedule: 37 7 * * *
   key: cidr
@@ -2964,11 +2964,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://www.spamhaus.org/blocklists/do-not-route-or-peer/
-  owner: CybrefV2 (from www.spamhaus.org)
+  owner: Cybref (from www.spamhaus.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/spamhaus_drop_ipv6.jsonl
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/spamhaus_drop_ipv6.jsonl
   format: jsonl
   schedule: 36 7 * * *
   key: cidr
@@ -2990,11 +2990,11 @@ referentials:
   - threat_intel
   - daily
   homepage: https://github.com/stamparm/ipsum
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/threat_intel/stamparm_ipsum.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/threat_intel/stamparm_ipsum.txt
   format: txt
   key: value
   schedule: 42 7 * * *
@@ -3015,11 +3015,11 @@ referentials:
   - network
   - weekly
   homepage: https://www.team-cymru.com/bogon-networks
-  owner: CybrefV2 (from www.team-cymru.org)
+  owner: Cybref (from www.team-cymru.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/teamcymru_fullbogons_ipv4.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/teamcymru_fullbogons_ipv4.txt
   format: txt
   key: value
   schedule: 28 7 * * *
@@ -3040,11 +3040,11 @@ referentials:
   - network
   - weekly
   homepage: https://www.team-cymru.com/bogon-networks
-  owner: CybrefV2 (from www.team-cymru.org)
+  owner: Cybref (from www.team-cymru.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/teamcymru_fullbogons_ipv6.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/teamcymru_fullbogons_ipv6.txt
   format: txt
   key: value
   schedule: 25 7 * * *
@@ -3065,11 +3065,11 @@ referentials:
   - network
   - daily
   homepage: https://check.torproject.org/
-  owner: CybrefV2 (from check.torproject.org)
+  owner: Cybref (from check.torproject.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/tor_exit_ips.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/tor_exit_ips.txt
   format: txt
   key: value
   schedule: 37 7 * * *
@@ -3090,11 +3090,11 @@ referentials:
   - network
   - daily
   homepage: https://metrics.torproject.org/onionoo.html
-  owner: CybrefV2 (from onionoo.torproject.org)
+  owner: Cybref (from onionoo.torproject.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/tor_exit_relays.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/tor_exit_relays.json
   format: json
   options:
     records_path: relays
@@ -3117,11 +3117,11 @@ referentials:
   - network
   - daily
   homepage: https://metrics.torproject.org/onionoo.html
-  owner: CybrefV2 (from onionoo.torproject.org)
+  owner: Cybref (from onionoo.torproject.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/tor_relays.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/tor_relays.json
   format: json
   options:
     records_path: relays
@@ -3144,11 +3144,11 @@ referentials:
   - domains
   - weekly
   homepage: https://tranco-list.eu/
-  owner: CybrefV2 (from tranco-list.eu)
+  owner: Cybref (from tranco-list.eu)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/tranco_top1m.csv
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/tranco_top1m.csv
   format: csv
   options:
     header: false
@@ -3176,11 +3176,11 @@ referentials:
   - domains
   - weekly
   homepage: https://github.com/PeterDaveHello/url-shorteners
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/domains/url_shorteners.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/domains/url_shorteners.txt
   format: txt
   key: value
   schedule: 18 7 * * *
@@ -3201,11 +3201,11 @@ referentials:
   - registries
   - weekly
   homepage: http://www.linux-usb.org/usb-ids.html
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/usb_ids.json
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/usb_ids.json
   format: json
   options:
     records_path: '*'
@@ -3228,11 +3228,11 @@ referentials:
   - registries
   - weekly
   homepage: https://www.wireshark.org/tools/oui-lookup.html
-  owner: CybrefV2 (from www.wireshark.org)
+  owner: Cybref (from www.wireshark.org)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/registries/wireshark_manuf.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/registries/wireshark_manuf.txt
   format: txt
   key: value
   schedule: 31 7 * * *
@@ -3253,11 +3253,11 @@ referentials:
   - network
   - weekly
   homepage: https://github.com/X4BNet/lists_vpn
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/x4bnet_datacenter_ipv4.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/x4bnet_datacenter_ipv4.txt
   format: txt
   key: value
   schedule: 20 7 * * *
@@ -3278,11 +3278,11 @@ referentials:
   - network
   - weekly
   homepage: https://github.com/X4BNet/lists_vpn
-  owner: CybrefV2 (from raw.githubusercontent.com)
+  owner: Cybref (from raw.githubusercontent.com)
   source:
     type: http
     urls:
-    - https://raw.githubusercontent.com/emeryn/CybrefV2/main/network/x4bnet_vpn_ipv4.txt
+    - https://raw.githubusercontent.com/skouedlabs/cybref/main/network/x4bnet_vpn_ipv4.txt
   format: txt
   key: value
   schedule: 50 7 * * *

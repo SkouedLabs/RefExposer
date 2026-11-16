@@ -97,7 +97,7 @@ data/                 published referentials, history, backups (created automati
 import/               import folder: manual versions of existing referentials
 sync/                 sync folder: every file or folder pushed there is a referential
 enterprise/            building the images from company repositories (internal registry, PyPI, npm, mirrors)
-examples/              example configurations and scripts (CybrefV2 definitions, API scripts)
+examples/              example configurations and scripts (Cybref definitions, API scripts)
 scripts/               lock.sh (pin the Python dependencies), scan.sh (supply-chain scan), sbom.sh (SBOM)
 Makefile               shortcuts: up, down, logs, build, test, typecheck, scan, sbom (make help)
 ```

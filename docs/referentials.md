@@ -21,9 +21,9 @@ These definitions are stored in the database. They can be changed later with **C
 
 ### Bulk discovery (Git repository, HTTP folder)
 
-**Administration › Bulk discovery** creates one referential per data file of a source, for example the 100 files of `output/` in [github.com/emeryn/cybref](https://github.com/emeryn/cybref):
+**Administration › Bulk discovery** creates one referential per data file of a source, for example the files of `threat_intel/` in [github.com/skouedlabs/cybref](https://github.com/skouedlabs/cybref):
 
-1. **Scan** a Git repository (HTTPS URL, glob of the files such as `output/*`, branch, token) or an HTTP folder (page listing the files: Apache, nginx, Caddy autoindex…; glob, sub-folder levels, authentication). For Git, only the tree of the commit is fetched, not the content: listing a repository takes about a second.
+1. **Scan** a Git repository (HTTPS URL, glob of the files such as `threat_intel/*`, branch, token) or an HTTP folder (page listing the files: Apache, nginx, Caddy autoindex…; glob, sub-folder levels, authentication). For Git, only the tree of the commit is fetched, not the content: listing a repository takes about a second.
 2. Each data file (known extension, possibly `.gz` / `.zip`) becomes a **proposal**: identifier and name from the file name (`-2` when the identifier is taken), Git or HTTP source, format, and the category, tags and schedule given once for all. Files already used by a referential are flagged and left unselected.
 3. **Analyse** (optional): the files are fetched (Git: only them, in one sparse fetch; HTTP: sampled) and read like the preview of the editor. The format, the record path of a JSON document (`records_path: prefixes` for `aws_ip_ranges.json`), the columns and the row count are filled in, and unreadable files are shown with their error.
 4. Review the list (identifier, name and format can be changed), choose the groups with read access, then **create** the selected referentials and start their imports.
@@ -45,7 +45,7 @@ Credentials of a private repository or folder must be `${secret:…}` references
 
 API: `GET /api/admin/config/export?ids=&grants=&credentials=masked|included&format=yaml|json`, `POST /api/admin/config/import` (`apply: false` for the plan). MCP tools: `export_configuration`, `import_configuration`.
 
-**Ready-made example**: [`examples/cybref/cybref-referentials.yaml`](../examples/cybref/cybref-referentials.yaml) imports 124 cybersecurity referentials of [CybrefV2](https://github.com/emeryn/CybrefV2) (threat intelligence, vulnerabilities, ATT&CK, IP ranges, registries…), with keys, quality rules and merged rolling feeds. See its [README](../examples/cybref/README.md).
+**Ready-made example**: [`examples/cybref/cybref-referentials.yaml`](../examples/cybref/cybref-referentials.yaml) imports 124 cybersecurity referentials of [Cybref](https://github.com/skouedlabs/cybref) (threat intelligence, vulnerabilities, ATT&CK, IP ranges, registries…), with keys, quality rules and merged rolling feeds. See its [README](../examples/cybref/README.md).
 
 ### With a YAML file
 

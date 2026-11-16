@@ -87,6 +87,18 @@ and the project uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- **An instance holding several hundred referentials no longer takes seconds to open a page.** The sidebar is
+  on every page and drew one entry per referential, each carrying a tooltip — a floating-position hook per
+  entry, several hundred of them laid out again on every navigation and on every poll of the catalogue. The
+  dashboard drew every referential as a card, and *Administration › Referentials* every one as a table row
+  with its own tooltips and menu, neither of them paged. The sidebar entries are now compared on what they
+  show and a tooltip is no longer one of them, the dashboard grid is paged (24 cards) and so is the
+  administration table (50 rows), and the catalogue is polled half as often on a large instance — every 5
+  seconds while an update is running, 30 otherwise — because the answer is about a kilobyte per referential
+  and was being fetched and re-parsed every 2 seconds. On the server, how long a referential may go without
+  an update before it counts as stale was derived from its crontab on every listing: parsing a few hundred
+  crontabs per request, now kept per schedule for an hour (5.2 ms to 0.1 ms for 400 referentials).
+
 - **A unified referential in *enrichment* mode no longer loads a big source whole to enrich a small one.** A
   `LEFT JOIN` hashes its right side, so enriching a thousand rows from a source of sixty million hashed the
   sixty million — several GB held to produce a thousand rows, and an update that ended in

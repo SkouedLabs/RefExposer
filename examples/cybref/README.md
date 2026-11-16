@@ -1,6 +1,6 @@
-# CybrefV2 referentials
+# Cybref referentials
 
-[`cybref-referentials.yaml`](cybref-referentials.yaml) declares the **124 datasets of [CybrefV2](https://github.com/emeryn/CybrefV2)** that are tables, read from its daily mirror on GitHub (`raw.githubusercontent.com/emeryn/CybrefV2/main/...`). They cover threat intelligence and IOCs, LOL binaries, vulnerabilities and exploits (NVD, CISA KEV, EPSS, Exploit-DB…), ATT&CK, CAPEC, CWE and D3FEND, cloud, CDN, VPN and Tor IP ranges, IP-to-ASN and country, domains, hardware registries and detection lists.
+[`cybref-referentials.yaml`](cybref-referentials.yaml) declares the **124 datasets of [Cybref](https://github.com/skouedlabs/cybref)** that are tables, read from its daily mirror on GitHub (`raw.githubusercontent.com/skouedlabs/cybref/main/...`). They cover threat intelligence and IOCs, LOL binaries, vulnerabilities and exploits (NVD, CISA KEV, EPSS, Exploit-DB…), ATT&CK, CAPEC, CWE and D3FEND, cloud, CDN, VPN and Tor IP ranges, IP-to-ASN and country, domains, hardware registries and detection lists.
 
 ## Import
 
@@ -12,7 +12,7 @@
   ```
 - **Configuration folder**: copy the file into `config/`. The referentials are then defined by the file (read-only in the interface).
 
-The first import downloads about 860 MB in total. Afterwards each referential is checked every day around 07:00, after the CybrefV2 refresh. The minute is spread per referential, and unchanged files answer `304 Not Modified`.
+The first import downloads about 860 MB in total. Afterwards each referential is checked every day around 07:00, after the Cybref refresh. The minute is spread per referential, and unchanged files answer `304 Not Modified`.
 
 ## What the definitions contain
 

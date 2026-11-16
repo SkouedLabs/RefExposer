@@ -45,6 +45,9 @@ class Service:
         self.downloads = Downloads(self.engine, settings)
         self._blooms: dict[str, tuple[float, Any]] = {}
         self._mmdbs: dict[str, tuple[float, Any]] = {}
+        # crontab -> (when it was worked out, how long a version may go without an update): see _stale_after.
+        # Keyed by the crontab itself, so a reloaded configuration cannot carry a stale answer over.
+        self._stale_cache: dict[str, tuple[float, timedelta | None]] = {}
         self.refs: dict[str, ReferentialConfig] = {}
         self.config_errors: list[ConfigError] = []
         self.metas: dict[str, dict[str, Any]] = {}
@@ -1081,15 +1084,28 @@ class Service:
         return None
 
     def _stale_after(self, ref: ReferentialConfig) -> timedelta | None:
+        """How long a referential may go without a successful update before it counts as stale.
+
+        Derived from the gap between the next two scheduled runs, which means parsing a crontab and walking
+        it twice. That is cheap once and not cheap four hundred times: the catalogue asks this for every
+        referential, on every listing, and a listing is polled. The answer is cached by crontab string —
+        several referentials usually share a few schedules — and recomputed after an hour, because an
+        irregular schedule (`0 9 * * 1-5`) does not give the same gap every day.
+        """
         if ref.max_age_delta:
             return ref.max_age_delta
-        if ref.schedule:
-            trig = CronTrigger.from_crontab(ref.schedule, timezone=self.tz)
-            first = trig.get_next_fire_time(None, datetime.now(self.tz))
-            second = trig.get_next_fire_time(first, first + timedelta(seconds=1)) if first else None
-            if first and second:
-                return max((second - first) * 2, timedelta(hours=1))
-        return None
+        if not ref.schedule:
+            return None
+        now = time.monotonic()
+        cached = self._stale_cache.get(ref.schedule)
+        if cached and now - cached[0] < 3600:
+            return cached[1]
+        trig = CronTrigger.from_crontab(ref.schedule, timezone=self.tz)
+        first = trig.get_next_fire_time(None, datetime.now(self.tz))
+        second = trig.get_next_fire_time(first, first + timedelta(seconds=1)) if first else None
+        answer = max((second - first) * 2, timedelta(hours=1)) if first and second else None
+        self._stale_cache[ref.schedule] = (now, answer)
+        return answer
 
     def health(self, ref: ReferentialConfig, meta: dict[str, Any]) -> str:
         """ok | stale | error | running | empty | disabled"""

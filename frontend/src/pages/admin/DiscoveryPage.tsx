@@ -114,8 +114,8 @@ export default function DiscoveryPage() {
     <Stack gap="lg">
       <div>
         <Text c="dimmed" size="sm">
-          One referential per data file of a Git repository (e.g. <Anchor href="https://github.com/emeryn/cybref" target="_blank">cybref</Anchor>,{' '}
-          <Code>output/*</Code>) or of an HTTP folder (directory listing): scan, review the proposals, create them at once.
+          One referential per data file of a Git repository (e.g. <Anchor href="https://github.com/skouedlabs/cybref" target="_blank">cybref</Anchor>,{' '}
+          <Code>threat_intel/*</Code>) or of an HTTP folder (directory listing): scan, review the proposals, create them at once.
         </Text>
       </div>
 
@@ -132,9 +132,9 @@ export default function DiscoveryPage() {
           />
           {type === 'git' ? (
             <>
-              <TextInput label="Repository (HTTPS)" placeholder="https://github.com/emeryn/cybref.git" value={repository} onChange={(e) => setRepository(e.currentTarget.value)} required />
+              <TextInput label="Repository (HTTPS)" placeholder="https://github.com/skouedlabs/cybref.git" value={repository} onChange={(e) => setRepository(e.currentTarget.value)} required />
               <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                <TextInput label="Files" description="Glob in the repository; every file when empty" placeholder="output/*" value={path} onChange={(e) => setPath(e.currentTarget.value)} />
+                <TextInput label="Files" description="Glob in the repository; every file when empty" placeholder="threat_intel/*" value={path} onChange={(e) => setPath(e.currentTarget.value)} />
                 <TextInput label="Branch, tag or commit" description="Default branch when empty" placeholder="main" value={ref} onChange={(e) => setRef(e.currentTarget.value)} />
                 <SecretInput label="Access token (private repository)" description="A secret of the secret manager (key button): copied as a reference into every definition" placeholder={'${secret:git-token}'} value={token} onChange={setToken} />
                 <TextInput label="User name of the token" placeholder="oauth2" value={username} onChange={(e) => setUsername(e.currentTarget.value)} />

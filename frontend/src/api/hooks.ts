@@ -5,11 +5,27 @@ import type { ReferentialSummary } from './types';
 
 const anyRunning = (refs?: ReferentialSummary[]) => refs?.some((r) => r.current_run) ?? false;
 
+/**
+ * The referential list: one query for the whole application (the sidebar, the dashboard, the administration),
+ * so they share the same data and the same refresh.
+ *
+ * The interval follows the size of the answer. A referential carries about a kilobyte of state, so a few
+ * hundred of them make this the heaviest thing the interface asks for, and it is asked for again on a timer:
+ * polling a large instance every two seconds leaves the browser parsing and re-rendering more often than a
+ * person can read. Past `BIG` referentials the pace is halved while an update is running, and doubled when
+ * nothing is.
+ */
+const BIG = 150;
+
 export function useReferentials() {
   return useQuery({
     queryKey: ['referentials'],
     queryFn: api.referentials,
-    refetchInterval: (q) => (anyRunning(q.state.data) ? 2000 : 15000),
+    refetchInterval: (q) => {
+      const big = (q.state.data?.length ?? 0) > BIG;
+      if (anyRunning(q.state.data)) return big ? 5000 : 2000;
+      return big ? 30000 : 15000;
+    },
   });
 }
 
