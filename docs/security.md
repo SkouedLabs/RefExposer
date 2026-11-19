@@ -149,7 +149,7 @@ Base images, pinned by tag and recorded by digest at the last scan:
 | `python:3.12-slim` | `sha256:a6e34c598f24…` |
 | `nginxinc/nginx-unprivileged:1.31-alpine-slim` | `sha256:a8cb0f33d51f…` |
 | `postgres:17-alpine` | `sha256:b0f9560a2de0…` |
-| `node:22-alpine` (build stage only) | `sha256:0a7108bf6c7b…` |
+| `node:26-alpine` (build stage only) | `sha256:…` (to record at the next scan) |
 
 ### Not covered yet
 

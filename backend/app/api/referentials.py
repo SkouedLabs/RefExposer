@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 import duckdb
 from fastapi import APIRouter, Body, Depends, File, Form, HTTPException, Path as PathParam, Query, Request, UploadFile
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from starlette.background import BackgroundTask
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -24,7 +24,7 @@ from ..engine import SqlError, SqlTimeout, rows_to_records
 from ..service import Service
 from ..sqlbuild import OPERATORS, QueryError, TableQuery, is_sql_text, lit, parquet_reader, parse_filters, qi, text_expr, type_kind
 from ..storage import RefPaths, iso, utcnow
-from .deps import get_ref, get_ref_with_data, get_service, materialise, require_table
+from .deps import get_ref, get_ref_with_data, get_service, materialise, public_base, require_table
 from ..bloom import normalize as bloom_normalize
 from ..geoip import MmdbError, looks_like_ip
 from ..geoip import flatten as geoip_flatten
@@ -840,6 +840,36 @@ def changes(
 
 
 # --------------------------------------------------------------------------- time travel
+
+@router.get("/referentials/{ref_id}/contract", summary="Data contract of the referential (ODCS v3.2.0)",
+            operation_id="referential_data_contract")
+def get_contract(ref_id: str, request: Request, format: Literal["yaml", "json"] = Query("yaml"),
+                 service: Service = Depends(get_service), user: CurrentUser = Depends(require_user)):
+    """The referential as an Open Data Contract Standard document (odcs.py).
+
+    A projection, not a second source of truth: the definition and the published version are what they are,
+    and this renders them in the form other data platforms read. Nothing can be imported back through here,
+    because ODCS has no way to describe how the data is fetched and built.
+
+    Readable by whoever may read the referential, and it says no more than `GET /api/referentials/{ref_id}`
+    already does: a confidential referential publishes no column profile, so no value of it reaches the
+    document, and the personal data columns are named and flagged without any example.
+    """
+    import orjson
+    import yaml
+
+    from .. import odcs
+
+    ref = get_ref(service, ref_id, user)
+    doc = odcs.contract(ref, service.metas.get(ref_id, {}), public_base(request))
+    name = f"{ref.id}-contract.{ 'json' if format == 'json' else 'yaml'}"
+    # `inline`: the file is named for whoever saves it (curl -OJ), without forcing a download in a browser
+    disposition = {"Content-Disposition": f'inline; filename="{name}"'}
+    if format == "json":
+        return Response(orjson.dumps(doc), media_type="application/json; charset=utf-8", headers=disposition)
+    body = yaml.safe_dump(doc, allow_unicode=True, sort_keys=False, width=110)
+    return Response(body, media_type=f"{odcs.MEDIA_TYPE}; charset=utf-8", headers=disposition)
+
 
 @router.get("/referentials/{ref_id}/snapshots", summary="Past versions kept for time travel")
 def list_snapshots(ref_id: str, service: Service = Depends(get_service), user: CurrentUser = Depends(require_user),

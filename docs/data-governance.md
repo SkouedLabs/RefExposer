@@ -30,6 +30,59 @@ same way, and because a question about the data needs someone to ask.
 
 - `visibility` and the owner are **metadata**: changing them never rebuilds the referential.
 
+## Data contract (Open Data Contract Standard)
+
+Every referential can be published as an **ODCS v3.2.0** document, the format of the Open Data Contract
+Standard (Bitol, LF AI & Data). It is what a data platform, a catalogue or a consumer's pipeline reads to
+know what this dataset is and what is promised about it, without knowing anything about RefExposer.
+
+```
+GET /api/referentials/<id>/contract              # YAML, media type application/odcs+yaml;version=3.2.0
+GET /api/referentials/<id>/contract?format=json
+```
+
+Readable by whoever may read the referential, with the same rule as everywhere else: one that an account
+cannot read answers *not found*.
+
+**It is generated, not stored.** The schema comes from the published version rather than from the
+declaration, so the contract describes the columns the referential actually has, with their types, which of
+them are always filled, and the two ends of each column as examples. The quality rules become ODCS checks:
+`not_null` and `unique` map onto the predefined metrics of the standard, and everything the standard has no
+metric for — a regular expression, a range, a list of allowed values, an SQL condition — is exported as the
+SQL query that RefExposer actually runs, so there is one definition of a rule and not two.
+
+What has no ODCS equivalent is exported under `customProperties` rather than invented as a field: the kind of
+source, the format, the transformation, the unification, the federation. **A contract cannot be imported
+back**, and that is not a missing feature: the standard deliberately says nothing about how data is fetched,
+decoded and built, so a definition rebuilt from one could not run.
+
+The few things a contract states that a definition has nowhere else to put are declared under `contract`:
+
+```yaml
+- id: staff-directory
+  name: Staff directory
+  contract:
+    version: 2.1.0            # version of the CONTRACT, not of the data: it changes when the promise does
+    status: active            # proposed · draft · active · deprecated · retired
+    purpose: Who works here, for the access reviews
+    usage: Join on id; the e-mail columns are masked
+    limitations: Contractors are not in it
+    support:
+      - channel: "#data-platform"
+        tool: slack
+        scope: interactive
+        url: https://example.slack.com/archives/C01
+```
+
+Everything there is **metadata**: declaring or changing a contract never rebuilds anything.
+
+**Confidentiality.** A contract is written to be handed to people outside the instance, so it is more
+reserved than the catalogue: no example is ever taken from a personal data column or from a
+[confidential referential](#confidential-referentials), even though their column profile is readable inside
+RefExposer. Column names are exported in every case — every reader of the referential already sees them, and
+a contract without them would describe nothing. The values *declared* in a quality rule (a list of allowed
+values, the bounds of a range) do appear: they are configuration, not data.
+
 ## Confidential referentials
 
 A referential marked **confidential** (`confidential: true`, or the switch in its editor) has its data **encrypted at rest**. It is still used normally through the interface, the API and SQL by the people who have access to it. Access rights do not change: confidentiality protects the stored data (disk, volumes, backups, database dumps), not the access.

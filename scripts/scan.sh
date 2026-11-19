@@ -30,7 +30,7 @@ cd "$(dirname "$0")/.."
 REPO=$(pwd)
 OUT=${SCAN_OUT:-$REPO/dist/scan}
 TRIVY_IMAGE=${TRIVY_IMAGE:-aquasec/trivy:0.76.0}
-NODE_IMAGE=${NODE_IMAGE:-node:22-alpine}
+NODE_IMAGE=${NODE_IMAGE:-node:26-alpine}
 PYTHON_IMAGE=${PYTHON_IMAGE:-python:3.12-slim}
 CACHE=${TRIVY_CACHE:-$REPO/dist/.trivy-cache}
 OURS="skouedlabs/refexposer-backend:latest skouedlabs/refexposer-frontend:latest"

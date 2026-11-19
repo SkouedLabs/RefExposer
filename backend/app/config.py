@@ -351,6 +351,43 @@ class FederationInfo(BaseModel):
     remote_source: str | None = None  # type of source over there (http, git, internal...)
 
 
+class SupportChannel(BaseModel):
+    """Where a consumer asks a question or reports a problem (ODCS `support`, odcs.py)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    channel: str = Field(..., max_length=120)
+    url: str | None = Field(None, max_length=500)
+    # slack, teams, email, ticket... free-form in the standard
+    tool: str | None = Field(None, max_length=60)
+    # What the channel is for: interactive, announcements, issues...
+    scope: str | None = Field(None, max_length=60)
+    description: str = Field("", max_length=500)
+
+
+class ContractConfig(BaseModel):
+    """What a data contract states that the rest of a definition cannot (odcs.py).
+
+    A referential already carries its schema, its quality rules, its owner and its update schedule; these are
+    the few things ODCS asks for that have nowhere else to live. `version` is the version of the **contract**,
+    not of the data: it changes when what is promised to consumers changes, which is a decision nobody can
+    derive from an update. The three texts fill `description.purpose|usage|limitations`, which the single
+    `description` of a referential cannot say apart.
+
+    None of this affects the produced dataset, so none of it reaches `config_hash`: declaring or changing a
+    contract never rebuilds anything.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    version: str = Field("1.0.0", max_length=40)
+    status: Literal["proposed", "draft", "active", "deprecated", "retired"] = "active"
+    purpose: str = Field("", max_length=2000)
+    usage: str = Field("", max_length=2000)
+    limitations: str = Field("", max_length=2000)
+    support: list[SupportChannel] = Field(default_factory=list, max_length=20)
+
+
 class ReferentialConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -388,6 +425,8 @@ class ReferentialConfig(BaseModel):
 
     schedule: str | None = None  # crontab expression
     max_age: str | None = None  # data considered stale after this duration
+    # Published as an Open Data Contract Standard document (odcs.py); not part of the configuration hash
+    contract: ContractConfig = Field(default_factory=ContractConfig)
     validation: ValidationConfig = Field(default_factory=ValidationConfig)
     # Data quality rules checked on every new version (quality.py); not part of the configuration hash
     quality: QualityConfig = Field(default_factory=QualityConfig)

@@ -1,6 +1,6 @@
 # Base images, npm registry and Alpine mirror: every default is the public one, and each can be pointed at
 # a company repository instead (see enterprise/README.md). Nothing else in the build has to change.
-ARG NODE_IMAGE=node:22-alpine
+ARG NODE_IMAGE=node:26-alpine
 # -alpine-slim: nginx without the dynamic modules we do not use (xslt, image-filter, njs) and without
 # curl. 21 packages instead of 71, so libxml2, libcurl and brotli - and their advisories - are simply
 # not in the image. The configuration only uses built-in directives (gzip, proxy_pass, resolver, map,

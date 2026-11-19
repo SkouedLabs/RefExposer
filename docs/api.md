@@ -85,6 +85,9 @@ curl -X POST -H "$H" "http://localhost:8080/api/sql/referential" -H "Content-Typ
 
 # Search across referentials
 curl -H "$H" "http://localhost:8080/api/search?q=CVE-2021-44228"
+
+# Data contract of a referential (Open Data Contract Standard v3.2.0)
+curl -H "$H" "http://localhost:8080/api/referentials/cisa-kev/contract"
 ```
 
 In Swagger (`/api/docs`), the **Authorize** button accepts an API token.
@@ -99,6 +102,7 @@ Authentication: `GET /api/auth/providers`, `GET /api/auth/oidc/login`, `GET /api
 Administration (admin role): `/api/admin/settings` (`proxy`, `ldap`, `oidc`, `syslog`, `mfa`, `branding`, and the `/test` routes), `POST /api/admin/users/{id}/approve|reject`, `/api/admin/service-accounts`, `/api/admin/users/{id}/tokens`, `DELETE /api/admin/users/{id}/mfa`, `/api/admin/referentials` (definitions, `/preview`, `/uploads`, `/{id}/upload`, `/{id}/yaml`), `/api/admin/users`, `/api/admin/groups`, `/api/admin/grants`, `/api/admin/audit`, `/api/admin/tasks` (`/{id}/run`, `/{id}/runs`), `/api/admin/backups` (download, `/restore`), `GET /api/system`, `POST /api/system/reload`.
 Search: `GET /api/referentials/{id}/facets` (same filters as `/rows`), `POST /api/referentials/{id}/lookup` with an optional `column`.
 Downloads: `GET /api/downloads` (catalog), `GET /api/referentials/{id}/downloads`, `GET /api/referentials/{id}/download/{format}`.
+Data contract: `GET /api/referentials/{id}/contract` (`?format=yaml|json`), the referential as an [Open Data Contract Standard](data-governance.md#data-contract-open-data-contract-standard) document.
 Internal referentials: see [Internal referentials](internal-and-unified.md#internal-referentials).
 
 ### SQL console security

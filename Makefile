@@ -29,7 +29,7 @@ test: ## Run the backend test suite
 	docker run --rm -v "$(CURDIR):/repo" -w /repo/backend refexposer-tests pytest -q -p no:cacheprovider
 
 typecheck: ## Type-check and build the frontend
-	docker run --rm -v "$(CURDIR)/frontend:/app" -w /app node:22-alpine npm run build
+	docker run --rm -v "$(CURDIR)/frontend:/app" -w /app node:26-alpine npm run build
 
 # Applications for other tools: not part of the published repository yet, so this target is not listed by
 # `make help`. Add "## <description>" after the colon to publish it with them.

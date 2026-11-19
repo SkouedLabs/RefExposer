@@ -30,7 +30,7 @@ The four base images to make available:
 | Image | Used by |
 |---|---|
 | `python:3.12-slim` | backend (application and tests) |
-| `node:22-alpine` | frontend build |
+| `node:26-alpine` | frontend build |
 | `nginxinc/nginx-unprivileged:1.31-alpine-slim` | frontend, serving the built assets |
 | `postgres:17-alpine` | the database at runtime (not a build dependency) |
 
@@ -63,7 +63,7 @@ Nothing in the `Dockerfile`s or in `docker-compose.yml`. Set the variables below
 | Variable | Default | What it does |
 |---|---|---|
 | `PYTHON_IMAGE` | `python:3.12-slim` | base image of the backend |
-| `NODE_IMAGE` | `node:22-alpine` | base image building the frontend |
+| `NODE_IMAGE` | `node:26-alpine` | base image building the frontend |
 | `NGINX_IMAGE` | `nginxinc/nginx-unprivileged:1.31-alpine-slim` | base image serving the frontend |
 | `POSTGRES_IMAGE` | `postgres:17-alpine` | database image used at runtime |
 | `PIP_INDEX_URL` | `https://pypi.org/simple` | Python index |
@@ -87,7 +87,7 @@ proxy. Put this in `.env.build`:
 
 ```properties
 PYTHON_IMAGE=nexus.example.com:8443/python:3.12-slim
-NODE_IMAGE=nexus.example.com:8443/node:22-alpine
+NODE_IMAGE=nexus.example.com:8443/node:26-alpine
 NGINX_IMAGE=nexus.example.com:8443/nginxinc/nginx-unprivileged:1.31-alpine-slim
 POSTGRES_IMAGE=nexus.example.com:8443/postgres:17-alpine
 

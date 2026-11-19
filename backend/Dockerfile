@@ -1,5 +1,10 @@
 # Base image, package index and Debian mirror: every default is the public one, and each can be pointed at
 # a company repository instead (see enterprise/README.md). Nothing else in the build has to change.
+#
+# Debian and not Alpine, unlike every other image of the stack: DuckDB publishes no musllinux wheel at all,
+# only the source archive. On Alpine, pip would compile it — a C++ build of hours, needing a whole toolchain
+# in the image, and duckdb would fall out of the --require-hashes lock since a wheel built here has no
+# published hash. Worth revisiting the day DuckDB ships musllinux wheels.
 ARG PYTHON_IMAGE=python:3.12-slim
 
 FROM ${PYTHON_IMAGE} AS base
